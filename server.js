@@ -24,4 +24,4 @@ app.get("*", (req, res) => {
 
 /* ================ Porta do Servidor ================ */
 
-app.listen(4444);
+app.listen(process.env.PORT || 4444);
