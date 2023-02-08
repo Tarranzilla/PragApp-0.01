@@ -1,0 +1,44 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="/main.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols"
+            rel="stylesheet"
+        />
+
+        <title>PragApp</title>
+    </head>
+    <body>
+        <div id="app_header">
+            <i class="material-icons">home</i>
+            <h1>PragApp</h1>
+            <p>Seja bem vindo ao PragApp!</p>
+        </div>
+
+        <div id="app_menu">
+            <button id="home_btn">Home</button>
+            <button id="sobre_btn">Sobre</button>
+            <button id="contato_btn">Contato</button>
+        </div>
+
+        <div id="app_login">
+            <p>Log-In:</p>
+            <form action="/usuario" method="POST">
+                <input type="text" name="usuario" placeholder="Prag" />
+                <input type="text" name="senha" placeholder="1234" />
+                <button type="submit">Acessar</button>
+            </form>
+        </div>
+
+        <div id="app_content"></div>
+    </body>
+    <script src="frontend.js"></script>
+</html>
