@@ -3,14 +3,25 @@ const dotenv = require("dotenv").config();
 
 const path = require("path");
 const express = require("express");
-const mongodb = require("mongodb");
+
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const uri = process.env.CONNECTIONSTRING;
+
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverApi: ServerApiVersion.v1,
+});
+client.connect((err) => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
+
 //const cors = require("cors");
 
 /* App se torna uma instancia de express */
 const app = express();
-
-mongodb.connect(process.env.CONNECTIONSTRING, function (err, client) {});
-
 /* ================ Configurações ================ */
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
