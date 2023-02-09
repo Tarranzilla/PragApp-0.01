@@ -1,9 +1,11 @@
-/* ================ Dependencias ================ */
+/* ================ Dependencias, Constantes, Variáveis e Setup ================ */
 const dotenv = require("dotenv").config();
 
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
 
+//Setup do MongoDB
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = process.env.CONNECTIONSTRING;
 
@@ -12,17 +14,12 @@ const client = new MongoClient(uri, {
     useUnifiedTopology: true,
     serverApi: ServerApiVersion.v1,
 });
-client.connect((err) => {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close();
-});
-
-//const cors = require("cors");
 
 /* App se torna uma instancia de express */
 const app = express();
+
 /* ================ Configurações ================ */
+
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 //app.use(express.json());
@@ -30,6 +27,15 @@ app.use(express.static(path.join(__dirname, "public")));
 /* ================ Middlewares ================ */
 
 // Nenhum
+
+/* ================ Banco de Dados ================ */
+
+//Busca por usuários
+client.connect(async function (err) {
+    const db = client.db();
+    const results = await db.collection("users").find().toArray();
+    console.log(results);
+});
 
 /* ================ Rotas ================ */
 
