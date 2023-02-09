@@ -31,9 +31,10 @@ app.use(express.static(path.join(__dirname, "public")));
 /* ================ Banco de Dados ================ */
 
 //Busca por usuários
-client.connect(async function (err) {
-    const db = client.db();
-    const results = await db.collection("users").find().toArray();
+client.connect(function (err) {
+    const db = client.db("database002");
+    console.log("Conectado ao banco de dados");
+    const results = db.collection("users").find().toArray();
     console.log(results);
 });
 
